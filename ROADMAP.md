@@ -12,14 +12,14 @@ Work plan for the app. Tick a box (`[x]`) when the item is done. Domain rules ar
 
 ## 1. Domain and storage facade (no UI)
 
-- [ ] Domain types: `Store`, `Item`, `StoreItem`
-- [ ] Asynchronous facade interface (no Dexie types in signatures)
-- [ ] Dexie implementation in `src/db/` (schema version 2: stores, items, store-item links)
-- [ ] Store operations: create, rename, delete (also deletes items left with no store)
-- [ ] Item operations: create (with its stores), edit, add / remove a store
-- [ ] List of a store, highest priority first
-- [ ] `markFound(itemId)`: deletes the item and its links in one transaction
-- [ ] Tests with fake-indexeddb for all of the above
+- [x] Domain types: `Store`, `Item`, `StoreItem`
+- [x] Asynchronous facade interface (no Dexie types in signatures)
+- [x] Dexie implementation in `src/db/` (schema version 2: stores, items, store-item links)
+- [x] Store operations: create, rename, delete (also deletes items left with no store)
+- [x] Item operations: create (with its stores), edit, add / remove a store
+- [x] List of a store, highest priority first
+- [x] `markFound(itemId)`: deletes the item and its links in one transaction
+- [x] Tests with fake-indexeddb for all of the above
 
 ## 2. Stores
 
