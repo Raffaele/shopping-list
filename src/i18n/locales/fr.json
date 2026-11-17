@@ -1,0 +1,23 @@
+{
+  "app": { "title": "Liste de courses" },
+  "nav": { "home": "Accueil", "settings": "Réglages", "label": "Navigation principale" },
+  "home": {
+    "emptyTitle": "Aucune liste pour l'instant",
+    "emptyText": "Vos listes de courses apparaîtront ici."
+  },
+  "settings": {
+    "title": "Réglages",
+    "theme": {
+      "title": "Thème",
+      "system": "Système",
+      "light": "Clair",
+      "dark": "Sombre"
+    },
+    "language": { "title": "Langue" },
+    "version": "Version"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "backHome": "Retour à l'accueil"
+  }
+}

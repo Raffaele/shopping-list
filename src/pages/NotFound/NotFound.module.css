@@ -1,0 +1,16 @@
+.root {
+  text-align: center;
+  padding: var(--space-7) var(--space-4);
+}
+
+.heading {
+  margin: 0 0 var(--space-4);
+  font-size: var(--font-size-xl);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-target);
+  color: var(--color-primary);
+}

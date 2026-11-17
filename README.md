@@ -1,75 +1,28 @@
-# React + TypeScript + Vite
+# shopping-list
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Offline-first Progressive Web App for managing shopping lists. Client-only (no backend), mobile-first, installable, deployed to GitHub Pages. Data is stored locally in IndexedDB.
 
-Currently, two official plugins are available:
+## Commands
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm run dev                  # dev server
+npm run build                # production build (dist/)
+npm run preview              # serve the production build (test PWA/offline)
+npm run typecheck            # tsc -b
+npm run lint                 # eslint
+npm run test                 # vitest run
+npm run format               # prettier --write
+npm run generate-pwa-assets  # regenerate icons from public/icon.svg
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Requires Node >= 24 (see `.nvmrc`) and npm.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Deployment
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Every push to `main` runs `.github/workflows/deploy.yml`: install → typecheck → lint → test → build → deploy to GitHub Pages. The app is served under `/shopping-list/` (`base` in `vite.config.ts`) and uses hash routing.
 
-```
+**Manual step:** on GitHub, go to Settings → Pages → Build and deployment → Source: **GitHub Actions**.
+
+## Tech
+
+React, TypeScript, Vite, React Router (hash), Zustand, Dexie, Radix Primitives, CSS Modules, i18next (en, it, fr, es, de, ru), vite-plugin-pwa, Vitest.

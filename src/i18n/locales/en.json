@@ -1,0 +1,23 @@
+{
+  "app": { "title": "Shopping list" },
+  "nav": { "home": "Home", "settings": "Settings", "label": "Main navigation" },
+  "home": {
+    "emptyTitle": "No lists yet",
+    "emptyText": "Your shopping lists will appear here."
+  },
+  "settings": {
+    "title": "Settings",
+    "theme": {
+      "title": "Theme",
+      "system": "System",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "language": { "title": "Language" },
+    "version": "Version"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "backHome": "Back to Home"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "app": { "title": "Lista de la compra" },
+  "nav": { "home": "Inicio", "settings": "Ajustes", "label": "Navegación principal" },
+  "home": {
+    "emptyTitle": "Aún no hay listas",
+    "emptyText": "Tus listas de la compra aparecerán aquí."
+  },
+  "settings": {
+    "title": "Ajustes",
+    "theme": {
+      "title": "Tema",
+      "system": "Sistema",
+      "light": "Claro",
+      "dark": "Oscuro"
+    },
+    "language": { "title": "Idioma" },
+    "version": "Versión"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "backHome": "Volver al inicio"
+  }
+}

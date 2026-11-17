@@ -1,0 +1,23 @@
+{
+  "app": { "title": "Lista della spesa" },
+  "nav": { "home": "Home", "settings": "Impostazioni", "label": "Navigazione principale" },
+  "home": {
+    "emptyTitle": "Ancora nessuna lista",
+    "emptyText": "Le tue liste della spesa appariranno qui."
+  },
+  "settings": {
+    "title": "Impostazioni",
+    "theme": {
+      "title": "Tema",
+      "system": "Sistema",
+      "light": "Chiaro",
+      "dark": "Scuro"
+    },
+    "language": { "title": "Lingua" },
+    "version": "Versione"
+  },
+  "notFound": {
+    "title": "Pagina non trovata",
+    "backHome": "Torna alla Home"
+  }
+}

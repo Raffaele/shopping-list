@@ -1,0 +1,23 @@
+{
+  "app": { "title": "Einkaufsliste" },
+  "nav": { "home": "Start", "settings": "Einstellungen", "label": "Hauptnavigation" },
+  "home": {
+    "emptyTitle": "Noch keine Listen",
+    "emptyText": "Deine Einkaufslisten erscheinen hier."
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "theme": {
+      "title": "Design",
+      "system": "System",
+      "light": "Hell",
+      "dark": "Dunkel"
+    },
+    "language": { "title": "Sprache" },
+    "version": "Version"
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "backHome": "Zurück zum Start"
+  }
+}
