@@ -2,6 +2,15 @@
 
 Offline-first Progressive Web App for managing shopping lists. Client-only (no backend), mobile-first, installable, deployed to GitHub Pages. Data is stored locally in IndexedDB.
 
+## How it works
+
+- You manage **several stores (shops)**. Each store has its own shopping list.
+- Each item to buy has a **name**, a **quantity** and a **priority** from 1 (lowest) to 3 (highest). Lists show the highest priority first.
+- An item can be added to **multiple stores**. When you mark it as **found**, it is removed from all of them.
+- Deleting a store also deletes the items that belong only to that store.
+
+All data stays on the device (IndexedDB) and is accessed through an asynchronous storage layer, so the data source can be changed later without touching the UI.
+
 ## Commands
 
 ```bash
