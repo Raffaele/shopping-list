@@ -23,10 +23,10 @@ Work plan for the app. Tick a box (`[x]`) when the item is done. Domain rules ar
 
 ## 2. Stores
 
-- [ ] Stores list screen (replaces the Home empty state)
-- [ ] Create, rename and delete a store
-- [ ] i18n keys in all six languages
-- [ ] Tests
+- [x] Stores list screen (replaces the Home empty state)
+- [x] Create, rename and delete a store
+- [x] i18n keys in all six languages
+- [x] Tests
 
 ## 3. Store list and items
 

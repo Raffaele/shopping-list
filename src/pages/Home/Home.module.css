@@ -1,14 +1,16 @@
-.empty {
-  text-align: center;
-  padding: var(--space-7) var(--space-4);
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
 }
 
 .heading {
-  margin: 0 0 var(--space-2);
+  margin: 0;
   font-size: var(--font-size-xl);
 }
 
-.text {
-  margin: 0;
-  color: var(--color-text-muted);
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

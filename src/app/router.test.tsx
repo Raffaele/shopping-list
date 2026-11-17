@@ -10,9 +10,9 @@ describe('router', () => {
     expect(screen.getByRole('link', { name: 'Back to Home' })).toBeInTheDocument();
   });
 
-  it('renders Home on index', () => {
+  it('renders the stores list on index', async () => {
     const router = createMemoryRouter(routes, { initialEntries: ['/'] });
     render(<RouterProvider router={router} />);
-    expect(screen.getByText('No lists yet')).toBeInTheDocument();
+    expect(await screen.findByText('No stores yet')).toBeInTheDocument();
   });
 });

@@ -32,7 +32,10 @@ function compareByPriorityThenName(a: Item, b: Item): number {
 }
 
 export const dexieShoppingFacade: ShoppingFacade = {
-  getStores: () => db.stores.toArray(),
+  async getStores() {
+    const stores = await db.stores.toArray();
+    return stores.sort((a, b) => a.name.localeCompare(b.name));
+  },
 
   async createStore(name) {
     assertValidName(name);

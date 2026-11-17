@@ -9,6 +9,8 @@
   --color-primary: #2563eb;
   --color-primary-contrast: #ffffff;
   --color-danger: #dc2626;
+  --color-danger-contrast: #ffffff;
+  --color-overlay: rgb(15 23 42 / 50%);
 }
 
 [data-theme='dark'] {
@@ -21,6 +23,8 @@
   --color-primary: #60a5fa;
   --color-primary-contrast: #0f172a;
   --color-danger: #f87171;
+  --color-danger-contrast: #0f172a;
+  --color-overlay: rgb(0 0 0 / 60%);
 }
 
 :root {
@@ -42,6 +46,7 @@
   --font-size-lg: 1.25rem;
   --font-size-xl: 1.5rem;
 
+  --icon-size: 1.5rem;
   --touch-target: 2.75rem;
   --nav-height: 3.5rem;
 

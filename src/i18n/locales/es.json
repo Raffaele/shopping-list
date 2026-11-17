@@ -1,9 +1,11 @@
 {
-  "app": { "title": "Lista de la compra" },
-  "nav": { "home": "Inicio", "settings": "Ajustes", "label": "Navegación principal" },
-  "home": {
-    "emptyTitle": "Aún no hay listas",
-    "emptyText": "Tus listas de la compra aparecerán aquí."
+  "app": {
+    "title": "Lista de la compra"
+  },
+  "nav": {
+    "home": "Inicio",
+    "settings": "Ajustes",
+    "label": "Navegación principal"
   },
   "settings": {
     "title": "Ajustes",
@@ -13,11 +15,30 @@
       "light": "Claro",
       "dark": "Oscuro"
     },
-    "language": { "title": "Idioma" },
+    "language": {
+      "title": "Idioma"
+    },
     "version": "Versión"
   },
   "notFound": {
     "title": "Página no encontrada",
     "backHome": "Volver al inicio"
+  },
+  "stores": {
+    "title": "Tiendas",
+    "emptyTitle": "Aún no hay tiendas",
+    "emptyText": "Añade tu primera tienda para empezar una lista de la compra.",
+    "nameLabel": "Nombre de la tienda",
+    "add": "Añadir",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "renameTitle": "Renombrar tienda",
+    "renameStore": "Renombrar {{name}}",
+    "deleteStore": "Eliminar {{name}}",
+    "listLabel": "Tiendas",
+    "addStore": "Añadir tienda",
+    "deleteTitle": "¿Eliminar la tienda?",
+    "deleteDescription": "«{{name}}» y los artículos que solo están en esta tienda se eliminarán. Esta acción no se puede deshacer."
   }
 }

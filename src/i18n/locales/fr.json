@@ -1,9 +1,11 @@
 {
-  "app": { "title": "Liste de courses" },
-  "nav": { "home": "Accueil", "settings": "Réglages", "label": "Navigation principale" },
-  "home": {
-    "emptyTitle": "Aucune liste pour l'instant",
-    "emptyText": "Vos listes de courses apparaîtront ici."
+  "app": {
+    "title": "Liste de courses"
+  },
+  "nav": {
+    "home": "Accueil",
+    "settings": "Réglages",
+    "label": "Navigation principale"
   },
   "settings": {
     "title": "Réglages",
@@ -13,11 +15,30 @@
       "light": "Clair",
       "dark": "Sombre"
     },
-    "language": { "title": "Langue" },
+    "language": {
+      "title": "Langue"
+    },
     "version": "Version"
   },
   "notFound": {
     "title": "Page introuvable",
     "backHome": "Retour à l'accueil"
+  },
+  "stores": {
+    "title": "Magasins",
+    "emptyTitle": "Aucun magasin",
+    "emptyText": "Ajoutez votre premier magasin pour commencer une liste de courses.",
+    "nameLabel": "Nom du magasin",
+    "add": "Ajouter",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "renameTitle": "Renommer le magasin",
+    "renameStore": "Renommer {{name}}",
+    "deleteStore": "Supprimer {{name}}",
+    "listLabel": "Magasins",
+    "addStore": "Ajouter un magasin",
+    "deleteTitle": "Supprimer le magasin ?",
+    "deleteDescription": "« {{name}} » et les articles présents uniquement dans ce magasin seront supprimés. Cette action est irréversible."
   }
 }

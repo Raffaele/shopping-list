@@ -1,6 +1,7 @@
 import type { Item, ItemFields, NewItem, Store } from './types';
 
 export interface ShoppingFacade {
+  /** Sorted by name. */
   getStores(): Promise<Store[]>;
   createStore(name: string): Promise<Store>;
   renameStore(storeId: string, name: string): Promise<void>;

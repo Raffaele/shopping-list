@@ -1,9 +1,11 @@
 {
-  "app": { "title": "Lista della spesa" },
-  "nav": { "home": "Home", "settings": "Impostazioni", "label": "Navigazione principale" },
-  "home": {
-    "emptyTitle": "Ancora nessuna lista",
-    "emptyText": "Le tue liste della spesa appariranno qui."
+  "app": {
+    "title": "Lista della spesa"
+  },
+  "nav": {
+    "home": "Home",
+    "settings": "Impostazioni",
+    "label": "Navigazione principale"
   },
   "settings": {
     "title": "Impostazioni",
@@ -13,11 +15,30 @@
       "light": "Chiaro",
       "dark": "Scuro"
     },
-    "language": { "title": "Lingua" },
+    "language": {
+      "title": "Lingua"
+    },
     "version": "Versione"
   },
   "notFound": {
     "title": "Pagina non trovata",
     "backHome": "Torna alla Home"
+  },
+  "stores": {
+    "title": "Negozi",
+    "emptyTitle": "Nessun negozio",
+    "emptyText": "Aggiungi il tuo primo negozio per iniziare una lista della spesa.",
+    "nameLabel": "Nome del negozio",
+    "add": "Aggiungi",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "delete": "Elimina",
+    "renameTitle": "Rinomina negozio",
+    "renameStore": "Rinomina {{name}}",
+    "deleteStore": "Elimina {{name}}",
+    "listLabel": "Negozi",
+    "addStore": "Aggiungi negozio",
+    "deleteTitle": "Eliminare il negozio?",
+    "deleteDescription": "«{{name}}» e gli articoli presenti solo in questo negozio verranno eliminati. L'operazione non può essere annullata."
   }
 }

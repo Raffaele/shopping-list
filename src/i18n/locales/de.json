@@ -1,9 +1,11 @@
 {
-  "app": { "title": "Einkaufsliste" },
-  "nav": { "home": "Start", "settings": "Einstellungen", "label": "Hauptnavigation" },
-  "home": {
-    "emptyTitle": "Noch keine Listen",
-    "emptyText": "Deine Einkaufslisten erscheinen hier."
+  "app": {
+    "title": "Einkaufsliste"
+  },
+  "nav": {
+    "home": "Start",
+    "settings": "Einstellungen",
+    "label": "Hauptnavigation"
   },
   "settings": {
     "title": "Einstellungen",
@@ -13,11 +15,30 @@
       "light": "Hell",
       "dark": "Dunkel"
     },
-    "language": { "title": "Sprache" },
+    "language": {
+      "title": "Sprache"
+    },
     "version": "Version"
   },
   "notFound": {
     "title": "Seite nicht gefunden",
     "backHome": "Zurück zum Start"
+  },
+  "stores": {
+    "title": "Geschäfte",
+    "emptyTitle": "Noch keine Geschäfte",
+    "emptyText": "Füge dein erstes Geschäft hinzu, um eine Einkaufsliste zu beginnen.",
+    "nameLabel": "Name des Geschäfts",
+    "add": "Hinzufügen",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "renameTitle": "Geschäft umbenennen",
+    "renameStore": "{{name}} umbenennen",
+    "deleteStore": "{{name}} löschen",
+    "listLabel": "Geschäfte",
+    "addStore": "Geschäft hinzufügen",
+    "deleteTitle": "Geschäft löschen?",
+    "deleteDescription": "„{{name}}“ und die Artikel, die nur in diesem Geschäft stehen, werden gelöscht. Das kann nicht rückgängig gemacht werden."
   }
 }

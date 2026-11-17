@@ -23,6 +23,12 @@ describe('stores', () => {
     expect(await facade.getStores()).toEqual([{ id: store.id, name: 'Aldi' }]);
   });
 
+  it('lists stores sorted by name', async () => {
+    await facade.createStore('Lidl');
+    await facade.createStore('Aldi');
+    expect((await facade.getStores()).map((store) => store.name)).toEqual(['Aldi', 'Lidl']);
+  });
+
   it('rejects empty names and unknown stores', async () => {
     await expect(facade.createStore('   ')).rejects.toThrow(RangeError);
     await expect(facade.renameStore('missing', 'x')).rejects.toThrow('Store not found');

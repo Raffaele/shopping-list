@@ -1,9 +1,11 @@
 {
-  "app": { "title": "Shopping list" },
-  "nav": { "home": "Home", "settings": "Settings", "label": "Main navigation" },
-  "home": {
-    "emptyTitle": "No lists yet",
-    "emptyText": "Your shopping lists will appear here."
+  "app": {
+    "title": "Shopping list"
+  },
+  "nav": {
+    "home": "Home",
+    "settings": "Settings",
+    "label": "Main navigation"
   },
   "settings": {
     "title": "Settings",
@@ -13,11 +15,30 @@
       "light": "Light",
       "dark": "Dark"
     },
-    "language": { "title": "Language" },
+    "language": {
+      "title": "Language"
+    },
     "version": "Version"
   },
   "notFound": {
     "title": "Page not found",
     "backHome": "Back to Home"
+  },
+  "stores": {
+    "title": "Stores",
+    "emptyTitle": "No stores yet",
+    "emptyText": "Add your first store to start a shopping list.",
+    "nameLabel": "Store name",
+    "add": "Add",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "renameTitle": "Rename store",
+    "renameStore": "Rename {{name}}",
+    "deleteStore": "Delete {{name}}",
+    "listLabel": "Stores",
+    "addStore": "Add store",
+    "deleteTitle": "Delete store?",
+    "deleteDescription": "“{{name}}” and the items found only in this store will be deleted. This can't be undone."
   }
 }
