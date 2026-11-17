@@ -30,7 +30,7 @@ Requires Node >= 24 (see `.nvmrc`) and npm.
 
 Live app: <https://raffaele.github.io/shopping-list/>
 
-Every push to `main` runs `.github/workflows/deploy.yml`: install → typecheck → lint → test → build → deploy to GitHub Pages. The app is served under `/shopping-list/` (`base` in `vite.config.ts`) and uses hash routing.
+Every push to `master` runs `.github/workflows/deploy.yml`: install → typecheck → lint → test → build → deploy to GitHub Pages. The app is served under `/shopping-list/` (`base` in `vite.config.ts`) and uses hash routing.
 
 **Manual step:** on GitHub, go to Settings → Pages → Build and deployment → Source: **GitHub Actions**.
 

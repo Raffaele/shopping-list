@@ -147,4 +147,4 @@ src/
 
 ## Deployment
 
-GitHub Actions builds and deploys to GitHub Pages on every push to `main` (`.github/workflows/deploy.yml`): install → typecheck → lint → test → build → deploy.
+GitHub Actions builds and deploys to GitHub Pages on every push to `master` (`.github/workflows/deploy.yml`): install → typecheck → lint → test → build → deploy.
