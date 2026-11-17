@@ -24,3 +24,7 @@ export function assertValidItemFields(fields: Partial<ItemFields>): void {
   if (fields.quantity !== undefined) assertValidQuantity(fields.quantity);
   if (fields.priority !== undefined) assertValidPriority(fields.priority);
 }
+
+export function assertHasStores(storeIds: readonly string[]): void {
+  if (storeIds.length === 0) throw new RangeError('An item needs at least one store');
+}

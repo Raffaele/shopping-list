@@ -40,5 +40,32 @@
     "addStore": "Ajouter un magasin",
     "deleteTitle": "Supprimer le magasin ?",
     "deleteDescription": "« {{name}} » et les articles présents uniquement dans ce magasin seront supprimés. Cette action est irréversible."
+  },
+  "items": {
+    "count_one": "{{count}} article",
+    "count_many": "{{count}} d’articles",
+    "count_other": "{{count}} articles",
+    "listLabel": "Articles",
+    "backToStores": "Retour aux magasins",
+    "addItem": "Ajouter un article",
+    "editTitle": "Modifier l’article",
+    "editItem": "Modifier {{name}}",
+    "markFound": "Marquer {{name}} comme trouvé",
+    "nameLabel": "Nom de l’article",
+    "quantityLabel": "Quantité",
+    "priorityLabel": "Priorité",
+    "storesLabel": "Magasins",
+    "storesHint": "Sélectionnez au moins un magasin.",
+    "priority": {
+      "high": "Haute",
+      "medium": "Moyenne",
+      "low": "Basse"
+    },
+    "quantity": "Qté : {{quantity, number}}",
+    "emptyTitle": "Aucun article",
+    "emptyText": "Ajoutez ce que vous devez acheter dans ce magasin.",
+    "add": "Ajouter",
+    "save": "Enregistrer",
+    "cancel": "Annuler"
   }
 }

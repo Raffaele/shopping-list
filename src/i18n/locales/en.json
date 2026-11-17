@@ -40,5 +40,31 @@
     "addStore": "Add store",
     "deleteTitle": "Delete store?",
     "deleteDescription": "“{{name}}” and the items found only in this store will be deleted. This can't be undone."
+  },
+  "items": {
+    "count_one": "{{count}} item",
+    "count_other": "{{count}} items",
+    "listLabel": "Items",
+    "backToStores": "Back to stores",
+    "addItem": "Add item",
+    "editTitle": "Edit item",
+    "editItem": "Edit {{name}}",
+    "markFound": "Mark {{name}} as found",
+    "nameLabel": "Item name",
+    "quantityLabel": "Quantity",
+    "priorityLabel": "Priority",
+    "storesLabel": "Stores",
+    "storesHint": "Select at least one store.",
+    "priority": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "quantity": "Qty: {{quantity, number}}",
+    "emptyTitle": "No items yet",
+    "emptyText": "Add what you need to buy from this store.",
+    "add": "Add",
+    "save": "Save",
+    "cancel": "Cancel"
   }
 }

@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { EmptyState } from '@/components/EmptyState/EmptyState';
 import type { Store } from '@/db';
 import { StoreListItem } from '../StoreListItem/StoreListItem';
 import styles from './StoreList.module.css';
@@ -7,12 +8,7 @@ export function StoreList({ stores }: { stores: Store[] }) {
   const { t } = useTranslation();
 
   if (stores.length === 0) {
-    return (
-      <div className={styles.empty}>
-        <h3 className={styles.emptyTitle}>{t('stores.emptyTitle')}</h3>
-        <p className={styles.emptyText}>{t('stores.emptyText')}</p>
-      </div>
-    );
+    return <EmptyState title={t('stores.emptyTitle')} text={t('stores.emptyText')} />;
   }
 
   return (

@@ -14,6 +14,8 @@ export interface ShoppingFacade {
   addItemToStore(itemId: string, storeId: string): Promise<void>;
   /** Removing the last store of an item deletes the item. */
   removeItemFromStore(itemId: string, storeId: string): Promise<void>;
+  /** Replaces the stores of an item atomically; at least one existing store is required. */
+  setItemStores(itemId: string, storeIds: string[]): Promise<void>;
   getItemStoreIds(itemId: string): Promise<string[]>;
 
   /** Highest priority first, then by name. */

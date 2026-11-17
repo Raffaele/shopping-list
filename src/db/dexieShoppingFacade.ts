@@ -1,7 +1,7 @@
 import { db } from './db';
 import type { ShoppingFacade } from './shoppingFacade';
 import type { Item, ItemFields, NewItem, Store } from './types';
-import { assertValidItemFields, assertValidName } from './validation';
+import { assertHasStores, assertValidItemFields, assertValidName } from './validation';
 
 const TABLES = [db.stores, db.items, db.storeItems];
 
@@ -62,9 +62,7 @@ export const dexieShoppingFacade: ShoppingFacade = {
 
   async createItem({ storeIds, ...fields }: NewItem) {
     assertValidItemFields(fields);
-    if (storeIds.length === 0) {
-      throw new RangeError('An item needs at least one store');
-    }
+    assertHasStores(storeIds);
     const item: Item = { id: crypto.randomUUID(), ...fields, name: fields.name.trim() };
     return db.transaction('rw', TABLES, async () => {
       await Promise.all(storeIds.map(assertStoreExists));
@@ -97,6 +95,15 @@ export const dexieShoppingFacade: ShoppingFacade = {
     db.transaction('rw', TABLES, async () => {
       await db.storeItems.delete([storeId, itemId]);
       await deleteItemIfOrphan(itemId);
+    }),
+
+  setItemStores: (itemId, storeIds) =>
+    db.transaction('rw', TABLES, async () => {
+      assertHasStores(storeIds);
+      await assertItemExists(itemId);
+      await Promise.all(storeIds.map(assertStoreExists));
+      await db.storeItems.where('itemId').equals(itemId).delete();
+      await db.storeItems.bulkAdd([...new Set(storeIds)].map((storeId) => ({ storeId, itemId })));
     }),
 
   async getItemStoreIds(itemId) {

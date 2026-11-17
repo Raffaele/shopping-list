@@ -40,5 +40,32 @@
     "addStore": "Añadir tienda",
     "deleteTitle": "¿Eliminar la tienda?",
     "deleteDescription": "«{{name}}» y los artículos que solo están en esta tienda se eliminarán. Esta acción no se puede deshacer."
+  },
+  "items": {
+    "count_one": "{{count}} artículo",
+    "count_many": "{{count}} de artículos",
+    "count_other": "{{count}} artículos",
+    "listLabel": "Artículos",
+    "backToStores": "Volver a las tiendas",
+    "addItem": "Añadir artículo",
+    "editTitle": "Editar artículo",
+    "editItem": "Editar {{name}}",
+    "markFound": "Marcar {{name}} como encontrado",
+    "nameLabel": "Nombre del artículo",
+    "quantityLabel": "Cantidad",
+    "priorityLabel": "Prioridad",
+    "storesLabel": "Tiendas",
+    "storesHint": "Selecciona al menos una tienda.",
+    "priority": {
+      "high": "Alta",
+      "medium": "Media",
+      "low": "Baja"
+    },
+    "quantity": "Cant.: {{quantity, number}}",
+    "emptyTitle": "Aún no hay artículos",
+    "emptyText": "Añade lo que necesitas comprar en esta tienda.",
+    "add": "Añadir",
+    "save": "Guardar",
+    "cancel": "Cancelar"
   }
 }

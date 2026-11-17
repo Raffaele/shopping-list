@@ -30,12 +30,12 @@ Work plan for the app. Tick a box (`[x]`) when the item is done. Domain rules ar
 
 ## 3. Store list and items
 
-- [ ] Store detail route with its items, sorted by priority (3 = highest, 1 = lowest)
-- [ ] Add and edit an item: name, quantity (integer >= 1), priority (1-3), stores
-- [ ] "Found" action that removes the item from every store
-- [ ] Plural forms for item counts (including Russian `_few` / `_many`)
-- [ ] i18n keys in all six languages
-- [ ] Tests
+- [x] Store detail route with its items, sorted by priority (3 = highest, 1 = lowest)
+- [x] Add and edit an item: name, quantity (integer >= 1), priority (1-3), stores
+- [x] "Found" action that removes the item from every store
+- [x] Plural forms for item counts (including Russian `_few` / `_many`)
+- [x] i18n keys in all six languages
+- [x] Tests
 
 ## 4. Polish
 

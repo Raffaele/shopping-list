@@ -12,6 +12,8 @@
   flex-direction: column;
   gap: var(--space-4);
   width: min(90vw, 24rem);
+  max-height: 90dvh;
+  overflow-y: auto;
   padding: var(--space-5);
   transform: translate(-50%, -50%);
   background: var(--color-bg);

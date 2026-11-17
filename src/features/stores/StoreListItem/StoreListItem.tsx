@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router';
 import { IconButton } from '@/components/IconButton/IconButton';
 import { shoppingFacade, type Store } from '@/db';
 import { DeleteStoreDialog } from '../DeleteStoreDialog/DeleteStoreDialog';
@@ -10,7 +11,9 @@ export function StoreListItem({ store }: { store: Store }) {
 
   return (
     <li className={styles.row}>
-      <span className={styles.name}>{store.name}</span>
+      <Link to={`/stores/${store.id}`} className={styles.name}>
+        {store.name}
+      </Link>
       <StoreNameDialog
         trigger={
           <IconButton icon="edit" aria-label={t('stores.renameStore', { name: store.name })} />

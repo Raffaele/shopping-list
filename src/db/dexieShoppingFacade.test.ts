@@ -103,6 +103,29 @@ describe('items', () => {
   });
 });
 
+describe('setItemStores', () => {
+  it('replaces the stores of an item', async () => {
+    const [a, b, c] = await Promise.all(['A', 'B', 'C'].map((name) => facade.createStore(name)));
+    const item = await facade.createItem(milk([a?.id ?? '']));
+
+    await facade.setItemStores(item.id, [b?.id ?? '', c?.id ?? '']);
+
+    expect((await facade.getItemStoreIds(item.id)).sort()).toEqual([b?.id, c?.id].sort());
+    expect(await facade.getStoreItems(a?.id ?? '')).toEqual([]);
+    expect(await db.items.get(item.id)).toEqual(item);
+  });
+
+  it('rejects empty, unknown and missing targets without changing anything', async () => {
+    const store = await facade.createStore('A');
+    const item = await facade.createItem(milk([store.id]));
+
+    await expect(facade.setItemStores(item.id, [])).rejects.toThrow(RangeError);
+    await expect(facade.setItemStores(item.id, ['missing'])).rejects.toThrow('Store not found');
+    await expect(facade.setItemStores('missing', [store.id])).rejects.toThrow('Item not found');
+    expect(await facade.getItemStoreIds(item.id)).toEqual([store.id]);
+  });
+});
+
 describe('store list', () => {
   it('sorts by priority descending, then by name', async () => {
     const store = await facade.createStore('A');

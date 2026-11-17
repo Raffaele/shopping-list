@@ -40,5 +40,31 @@
     "addStore": "Geschäft hinzufügen",
     "deleteTitle": "Geschäft löschen?",
     "deleteDescription": "„{{name}}“ und die Artikel, die nur in diesem Geschäft stehen, werden gelöscht. Das kann nicht rückgängig gemacht werden."
+  },
+  "items": {
+    "count_one": "{{count}} Artikel",
+    "count_other": "{{count}} Artikel",
+    "listLabel": "Artikel",
+    "backToStores": "Zurück zu den Geschäften",
+    "addItem": "Artikel hinzufügen",
+    "editTitle": "Artikel bearbeiten",
+    "editItem": "{{name}} bearbeiten",
+    "markFound": "{{name}} als gefunden markieren",
+    "nameLabel": "Name des Artikels",
+    "quantityLabel": "Menge",
+    "priorityLabel": "Priorität",
+    "storesLabel": "Geschäfte",
+    "storesHint": "Wähle mindestens ein Geschäft aus.",
+    "priority": {
+      "high": "Hoch",
+      "medium": "Mittel",
+      "low": "Niedrig"
+    },
+    "quantity": "Menge: {{quantity, number}}",
+    "emptyTitle": "Noch keine Artikel",
+    "emptyText": "Füge hinzu, was du in diesem Geschäft kaufen musst.",
+    "add": "Hinzufügen",
+    "save": "Speichern",
+    "cancel": "Abbrechen"
   }
 }

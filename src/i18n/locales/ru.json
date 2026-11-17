@@ -40,5 +40,33 @@
     "addStore": "Добавить магазин",
     "deleteTitle": "Удалить магазин?",
     "deleteDescription": "Магазин «{{name}}» и товары, которые есть только в нём, будут удалены. Это действие нельзя отменить."
+  },
+  "items": {
+    "count_one": "{{count}} товар",
+    "count_few": "{{count}} товара",
+    "count_many": "{{count}} товаров",
+    "count_other": "{{count}} товара",
+    "listLabel": "Товары",
+    "backToStores": "Назад к магазинам",
+    "addItem": "Добавить товар",
+    "editTitle": "Изменить товар",
+    "editItem": "Изменить {{name}}",
+    "markFound": "Отметить «{{name}}» как найденный",
+    "nameLabel": "Название товара",
+    "quantityLabel": "Количество",
+    "priorityLabel": "Приоритет",
+    "storesLabel": "Магазины",
+    "storesHint": "Выберите хотя бы один магазин.",
+    "priority": {
+      "high": "Высокий",
+      "medium": "Средний",
+      "low": "Низкий"
+    },
+    "quantity": "Кол-во: {{quantity, number}}",
+    "emptyTitle": "Товаров пока нет",
+    "emptyText": "Добавьте то, что нужно купить в этом магазине.",
+    "add": "Добавить",
+    "save": "Сохранить",
+    "cancel": "Отмена"
   }
 }
