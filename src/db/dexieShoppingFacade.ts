@@ -1,4 +1,5 @@
 import { db } from './db';
+import { toSuggestionKey } from './suggestions';
 import type { ShoppingFacade } from './shoppingFacade';
 import type { Item, ItemFields, NewItem, Store } from './types';
 import {
@@ -8,7 +9,24 @@ import {
   assertValidName,
 } from './validation';
 
-const TABLES = [db.stores, db.items, db.storeItems];
+const TABLES = [db.stores, db.items, db.storeItems, db.storeSuggestions];
+
+async function getStoreIdsOfItem(itemId: string): Promise<string[]> {
+  const links = await db.storeItems.where('itemId').equals(itemId).toArray();
+  return links.map((link) => link.storeId);
+}
+
+async function rememberName(storeIds: readonly string[], name: string): Promise<void> {
+  const key = toSuggestionKey(name);
+  await db.storeSuggestions.bulkPut(
+    [...new Set(storeIds)].map((storeId) => ({ storeId, key, name })),
+  );
+}
+
+async function rememberItemName(itemId: string): Promise<void> {
+  const item = await db.items.get(itemId);
+  if (item) await rememberName(await getStoreIdsOfItem(itemId), item.name);
+}
 
 async function getItemIdsOfStore(storeId: string): Promise<string[]> {
   const links = await db.storeItems.where('storeId').equals(storeId).toArray();
@@ -79,6 +97,7 @@ export const dexieShoppingFacade: ShoppingFacade = {
     db.transaction('rw', TABLES, async () => {
       const itemIds = await getItemIdsOfStore(storeId);
       await db.storeItems.where('storeId').equals(storeId).delete();
+      await db.storeSuggestions.where('storeId').equals(storeId).delete();
       await db.stores.delete(storeId);
       await Promise.all(itemIds.map(deleteItemIfOrphan));
     }),
@@ -93,6 +112,7 @@ export const dexieShoppingFacade: ShoppingFacade = {
       await db.storeItems.bulkAdd(
         [...new Set(storeIds)].map((storeId) => ({ storeId, itemId: item.id })),
       );
+      await rememberName(storeIds, item.name);
       return item;
     });
   },
@@ -104,6 +124,7 @@ export const dexieShoppingFacade: ShoppingFacade = {
     await db.transaction('rw', TABLES, async () => {
       await assertItemExists(itemId);
       await db.items.update(itemId, trimmed);
+      if (trimmed.name !== undefined) await rememberItemName(itemId);
     });
   },
 
@@ -112,6 +133,7 @@ export const dexieShoppingFacade: ShoppingFacade = {
       await assertItemExists(itemId);
       await assertStoreExists(storeId);
       await db.storeItems.put({ storeId, itemId });
+      await rememberItemName(itemId);
     }),
 
   removeItemFromStore: (itemId, storeId) =>
@@ -127,11 +149,18 @@ export const dexieShoppingFacade: ShoppingFacade = {
       await Promise.all(storeIds.map(assertStoreExists));
       await db.storeItems.where('itemId').equals(itemId).delete();
       await db.storeItems.bulkAdd([...new Set(storeIds)].map((storeId) => ({ storeId, itemId })));
+      await rememberItemName(itemId);
     }),
 
-  async getItemStoreIds(itemId) {
-    const links = await db.storeItems.where('itemId').equals(itemId).toArray();
-    return links.map((link) => link.storeId);
+  getItemStoreIds: getStoreIdsOfItem,
+
+  async getStoreSuggestions(storeId) {
+    const suggestions = await db.storeSuggestions.where('storeId').equals(storeId).toArray();
+    return suggestions.map(({ name }) => name).sort((a, b) => a.localeCompare(b));
+  },
+
+  async deleteStoreSuggestion(storeId, name) {
+    await db.storeSuggestions.delete([storeId, toSuggestionKey(name)]);
   },
 
   async getStoreItems(storeId) {

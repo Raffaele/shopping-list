@@ -21,6 +21,7 @@ export function AddItemDialog({ storeId }: { storeId: string }) {
             priority: DEFAULT_PRIORITY,
             storeIds: [storeId],
           }}
+          suggestionsStoreId={storeId}
           submitLabel={t('items.add')}
           onSubmit={async (values) => {
             await shoppingFacade.createItem(values);

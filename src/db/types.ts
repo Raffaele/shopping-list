@@ -19,6 +19,13 @@ export interface StoreItem {
   itemId: string;
 }
 
+/** A name remembered for a store, offered again when adding items to it. */
+export interface StoreSuggestion {
+  storeId: string;
+  key: string;
+  name: string;
+}
+
 export type ItemFields = Omit<Item, 'id'>;
 
 export interface NewItem extends ItemFields {

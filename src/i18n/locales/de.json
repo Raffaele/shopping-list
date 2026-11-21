@@ -66,6 +66,10 @@
     "emptyText": "Füge hinzu, was du in diesem Geschäft kaufen musst.",
     "add": "Hinzufügen",
     "save": "Speichern",
-    "cancel": "Abbrechen"
+    "cancel": "Abbrechen",
+    "suggestionsLabel": "Vorschläge",
+    "use": "Übernehmen",
+    "useSuggestion": "{{name}} übernehmen",
+    "deleteSuggestion": "Vorschlag {{name}} entfernen"
   }
 }

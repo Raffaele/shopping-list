@@ -4,12 +4,15 @@ import { Button } from '@/components/Button/Button';
 import dialogStyles from '@/components/Dialog/Dialog.module.css';
 import { MIN_QUANTITY, type NewItem } from '@/db';
 import { useStores } from '@/features/stores/useStores';
+import { NameSuggestions } from '../NameSuggestions/NameSuggestions';
 import { PriorityField } from '../PriorityField/PriorityField';
 import { StoresField } from '../StoresField/StoresField';
 import styles from './ItemForm.module.css';
 
 interface ItemFormProps {
   initialValues: NewItem;
+  /** When set, names remembered for this store are offered while typing. */
+  suggestionsStoreId?: string;
   submitLabel: string;
   onSubmit: (values: NewItem) => Promise<void>;
   onCancel: () => void;
@@ -19,7 +22,13 @@ function isValidQuantity(quantity: number): boolean {
   return Number.isInteger(quantity) && quantity >= MIN_QUANTITY;
 }
 
-export function ItemForm({ initialValues, submitLabel, onSubmit, onCancel }: ItemFormProps) {
+export function ItemForm({
+  initialValues,
+  suggestionsStoreId,
+  submitLabel,
+  onSubmit,
+  onCancel,
+}: ItemFormProps) {
   const { t } = useTranslation();
   const stores = useStores();
   const [name, setName] = useState(initialValues.name);
@@ -48,6 +57,9 @@ export function ItemForm({ initialValues, submitLabel, onSubmit, onCancel }: Ite
           }}
         />
       </label>
+      {suggestionsStoreId !== undefined && (
+        <NameSuggestions storeId={suggestionsStoreId} query={name} onUse={setName} />
+      )}
       <label className={styles.label}>
         <span className={styles.labelText}>{t('items.quantityLabel')}</span>
         <input

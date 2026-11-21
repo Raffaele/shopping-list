@@ -67,6 +67,10 @@
     "emptyText": "Aggiungi ciò che devi comprare in questo negozio.",
     "add": "Aggiungi",
     "save": "Salva",
-    "cancel": "Annulla"
+    "cancel": "Annulla",
+    "suggestionsLabel": "Suggerimenti",
+    "use": "Usa",
+    "useSuggestion": "Usa {{name}}",
+    "deleteSuggestion": "Elimina il suggerimento {{name}}"
   }
 }

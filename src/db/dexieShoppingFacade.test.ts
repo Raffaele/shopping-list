@@ -12,7 +12,12 @@ const milk = (storeIds: string[], overrides: Partial<NewItem> = {}): NewItem => 
 });
 
 beforeEach(async () => {
-  await Promise.all([db.stores.clear(), db.items.clear(), db.storeItems.clear()]);
+  await Promise.all([
+    db.stores.clear(),
+    db.items.clear(),
+    db.storeItems.clear(),
+    db.storeSuggestions.clear(),
+  ]);
 });
 
 describe('stores', () => {
@@ -171,5 +176,47 @@ describe('markFound', () => {
     expect(await facade.getStoreItems(b.id)).toEqual([]);
     expect(await db.items.count()).toBe(0);
     expect(await db.storeItems.count()).toBe(0);
+  });
+});
+
+describe('store suggestions', () => {
+  it('remembers names per store, even after the item is found', async () => {
+    const a = await facade.createStore('A');
+    const b = await facade.createStore('B');
+    const milk1 = await facade.createItem(milk([a.id], { name: 'Milk' }));
+    await facade.createItem(milk([a.id, b.id], { name: 'Bread' }));
+    await facade.markFound(milk1.id);
+
+    expect(await facade.getStoreSuggestions(a.id)).toEqual(['Bread', 'Milk']);
+    expect(await facade.getStoreSuggestions(b.id)).toEqual(['Bread']);
+  });
+
+  it('keeps one suggestion per name, ignoring case', async () => {
+    const a = await facade.createStore('A');
+    await facade.createItem(milk([a.id], { name: 'milk' }));
+    await facade.createItem(milk([a.id], { name: 'Milk' }));
+    expect(await facade.getStoreSuggestions(a.id)).toEqual(['Milk']);
+  });
+
+  it('remembers renamed items and newly linked stores', async () => {
+    const a = await facade.createStore('A');
+    const b = await facade.createStore('B');
+    const item = await facade.createItem(milk([a.id]));
+    await facade.updateItem(item.id, { name: 'Oat milk' });
+    await facade.setItemStores(item.id, [a.id, b.id]);
+
+    expect(await facade.getStoreSuggestions(a.id)).toEqual(['Milk', 'Oat milk']);
+    expect(await facade.getStoreSuggestions(b.id)).toEqual(['Oat milk']);
+  });
+
+  it('deletes a suggestion and the suggestions of a deleted store', async () => {
+    const a = await facade.createStore('A');
+    await facade.createItem(milk([a.id], { name: 'Milk' }));
+    await facade.createItem(milk([a.id], { name: 'Bread' }));
+    await facade.deleteStoreSuggestion(a.id, 'MILK');
+    expect(await facade.getStoreSuggestions(a.id)).toEqual(['Bread']);
+
+    await facade.deleteStore(a.id);
+    expect(await db.storeSuggestions.count()).toBe(0);
   });
 });

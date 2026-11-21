@@ -66,6 +66,10 @@
     "emptyText": "Add what you need to buy from this store.",
     "add": "Add",
     "save": "Save",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "suggestionsLabel": "Suggestions",
+    "use": "Use",
+    "useSuggestion": "Use {{name}}",
+    "deleteSuggestion": "Remove suggestion {{name}}"
   }
 }

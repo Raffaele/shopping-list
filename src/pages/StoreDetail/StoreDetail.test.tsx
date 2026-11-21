@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createMemoryRouter, RouterProvider } from 'react-router';
 import { routes } from '@/app/router';
@@ -183,5 +183,34 @@ describe('item count plurals', () => {
   ])('formats %s count %i as "%s"', async (lng, count, expected) => {
     await i18n.changeLanguage(lng);
     expect(i18n.t('items.count', { count })).toBe(expected);
+  });
+
+  it('offers the names remembered for this store and lets the user use or remove them', async () => {
+    const user = userEvent.setup();
+    const lidl = await shoppingFacade.createStore('Lidl');
+    const aldi = await shoppingFacade.createStore('Aldi');
+    const eggs = await shoppingFacade.createItem(newItem([lidl.id], { name: 'Eggs' }));
+    await shoppingFacade.createItem(newItem([lidl.id], { name: 'Bread' }));
+    await shoppingFacade.createItem(newItem([aldi.id], { name: 'Cheese' }));
+    await shoppingFacade.markFound(eggs.id);
+    renderStore(lidl.id);
+
+    const dialog = await openItemDialog(user, 'Add item', 'Add item');
+    const suggestions = await within(dialog).findByRole('list', { name: 'Suggestions' });
+    expect(
+      within(suggestions)
+        .getAllByRole('listitem')
+        .map((row) => row.textContent),
+    ).toEqual([expect.stringContaining('Bread'), expect.stringContaining('Eggs')]);
+
+    await user.click(within(suggestions).getByRole('button', { name: 'Remove suggestion Bread' }));
+    await waitFor(() => {
+      expect(within(dialog).queryByText('Bread')).not.toBeInTheDocument();
+    });
+
+    await user.click(within(dialog).getByRole('button', { name: 'Use Eggs' }));
+    expect(within(dialog).getByLabelText('Item name')).toHaveValue('Eggs');
+    expect(within(dialog).queryByRole('list', { name: 'Suggestions' })).not.toBeInTheDocument();
+    expect(await shoppingFacade.getStoreSuggestions(lidl.id)).toEqual(['Eggs']);
   });
 });

@@ -20,6 +20,10 @@ export interface ShoppingFacade {
   setItemStores(itemId: string, storeIds: string[]): Promise<void>;
   getItemStoreIds(itemId: string): Promise<string[]>;
 
+  /** Names previously entered in the store, sorted by name. */
+  getStoreSuggestions(storeId: string): Promise<string[]>;
+  deleteStoreSuggestion(storeId: string, name: string): Promise<void>;
+
   /** Highest priority first, then by name. */
   getStoreItems(storeId: string): Promise<Item[]>;
   /** Deletes the item and all its links, so it disappears from every store. */

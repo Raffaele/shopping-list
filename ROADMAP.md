@@ -37,6 +37,7 @@ Work plan for the app. Tick a box (`[x]`) when the item is done. Domain rules ar
 - [x] Plural forms for item counts (including Russian `_few` / `_many`)
 - [x] i18n keys in all six languages
 - [x] Tests
+- [x] Name auto-complete when adding an item: names remembered per store, with use and remove buttons
 
 ## 4. Polish
 
