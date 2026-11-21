@@ -11,10 +11,10 @@ export function AddItemDialog({ storeId }: { storeId: string }) {
   return (
     <ItemDialog
       trigger={<IconButton icon="plus" variant="primary" aria-label={t('items.addItem')} />}
-      title={t('items.addItem')}
     >
       {(close) => (
         <ItemForm
+          title={t('items.addItem')}
           initialValues={{
             name: '',
             quantity: MIN_QUANTITY,
