@@ -3,6 +3,8 @@ export type Priority = 1 | 2 | 3;
 export interface Store {
   id: string;
   name: string;
+  /** Zero-based place in the list of stores, chosen by the user. */
+  position: number;
 }
 
 export interface Item {

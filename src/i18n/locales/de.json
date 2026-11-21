@@ -39,7 +39,8 @@
     "listLabel": "Geschäfte",
     "addStore": "Geschäft hinzufügen",
     "deleteTitle": "Geschäft löschen?",
-    "deleteDescription": "„{{name}}“ und die Artikel, die nur in diesem Geschäft stehen, werden gelöscht. Das kann nicht rückgängig gemacht werden."
+    "deleteDescription": "„{{name}}“ und die Artikel, die nur in diesem Geschäft stehen, werden gelöscht. Das kann nicht rückgängig gemacht werden.",
+    "reorderStore": "{{name}} verschieben: ziehen oder die Pfeiltasten nach oben und unten verwenden"
   },
   "items": {
     "count_one": "{{count}} Artikel",

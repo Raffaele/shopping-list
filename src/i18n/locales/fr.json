@@ -39,7 +39,8 @@
     "listLabel": "Magasins",
     "addStore": "Ajouter un magasin",
     "deleteTitle": "Supprimer le magasin ?",
-    "deleteDescription": "« {{name}} » et les articles présents uniquement dans ce magasin seront supprimés. Cette action est irréversible."
+    "deleteDescription": "« {{name}} » et les articles présents uniquement dans ce magasin seront supprimés. Cette action est irréversible.",
+    "reorderStore": "Réordonner {{name}} : faites glisser ou utilisez les flèches haut et bas"
   },
   "items": {
     "count_one": "{{count}} article",

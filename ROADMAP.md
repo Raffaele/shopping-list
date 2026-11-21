@@ -27,6 +27,7 @@ Work plan for the app. Tick a box (`[x]`) when the item is done. Domain rules ar
 - [x] Create, rename and delete a store
 - [x] i18n keys in all six languages
 - [x] Tests
+- [x] Reorder stores with drag & drop (pointer and keyboard), order persisted
 
 ## 3. Store list and items
 

@@ -20,13 +20,33 @@ describe('stores', () => {
     const store = await facade.createStore('  Lidl ');
     expect(store.name).toBe('Lidl');
     await facade.renameStore(store.id, 'Aldi');
-    expect(await facade.getStores()).toEqual([{ id: store.id, name: 'Aldi' }]);
+    expect(await facade.getStores()).toEqual([{ id: store.id, name: 'Aldi', position: 0 }]);
   });
 
-  it('lists stores sorted by name', async () => {
+  it('lists stores in creation order', async () => {
     await facade.createStore('Lidl');
     await facade.createStore('Aldi');
-    expect((await facade.getStores()).map((store) => store.name)).toEqual(['Aldi', 'Lidl']);
+    expect((await facade.getStores()).map((store) => store.name)).toEqual(['Lidl', 'Aldi']);
+  });
+
+  it('reorders stores and appends new ones last, even after a deletion', async () => {
+    const [a, b, c] = [
+      await facade.createStore('A'),
+      await facade.createStore('B'),
+      await facade.createStore('C'),
+    ];
+    await facade.reorderStores([c.id, a.id, b.id]);
+    await facade.deleteStore(a.id);
+    await facade.createStore('D');
+    expect((await facade.getStores()).map((store) => store.name)).toEqual(['C', 'B', 'D']);
+  });
+
+  it('rejects an order that does not list every store once', async () => {
+    const a = await facade.createStore('A');
+    await facade.createStore('B');
+    await expect(facade.reorderStores([a.id])).rejects.toThrow(RangeError);
+    await expect(facade.reorderStores([a.id, a.id])).rejects.toThrow(RangeError);
+    await expect(facade.reorderStores([a.id, 'missing'])).rejects.toThrow(RangeError);
   });
 
   it('rejects empty names and unknown stores', async () => {

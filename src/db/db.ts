@@ -24,6 +24,17 @@ export class AppDB extends Dexie {
       items: 'id',
       storeItems: '[storeId+itemId], storeId, itemId',
     });
+    this.version(3)
+      .stores({ stores: 'id, position' })
+      .upgrade(async (transaction) => {
+        const stores = await transaction.table<Omit<Store, 'position'>>('stores').toArray();
+        const byName = stores.sort((a, b) => a.name.localeCompare(b.name));
+        await Promise.all(
+          byName.map((store, position) =>
+            transaction.table('stores').update(store.id, { position }),
+          ),
+        );
+      });
   }
 }
 

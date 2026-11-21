@@ -39,7 +39,8 @@
     "listLabel": "Negozi",
     "addStore": "Aggiungi negozio",
     "deleteTitle": "Eliminare il negozio?",
-    "deleteDescription": "«{{name}}» e gli articoli presenti solo in questo negozio verranno eliminati. L'operazione non può essere annullata."
+    "deleteDescription": "«{{name}}» e gli articoli presenti solo in questo negozio verranno eliminati. L'operazione non può essere annullata.",
+    "reorderStore": "Riordina {{name}}: trascina, o usa le frecce su e giù"
   },
   "items": {
     "count_one": "{{count}} articolo",

@@ -25,6 +25,15 @@ export function assertValidItemFields(fields: Partial<ItemFields>): void {
   if (fields.priority !== undefined) assertValidPriority(fields.priority);
 }
 
+export function assertSameIds(actual: readonly string[], expected: readonly string[]): void {
+  const expectedIds = new Set(expected);
+  const isPermutation =
+    actual.length === expected.length &&
+    new Set(actual).size === actual.length &&
+    actual.every((id) => expectedIds.has(id));
+  if (!isPermutation) throw new RangeError('The order must list every store exactly once');
+}
+
 export function assertHasStores(storeIds: readonly string[]): void {
   if (storeIds.length === 0) throw new RangeError('An item needs at least one store');
 }

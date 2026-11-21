@@ -1,9 +1,11 @@
 import type { Item, ItemFields, NewItem, Store } from './types';
 
 export interface ShoppingFacade {
-  /** Sorted by name. */
+  /** In the order chosen by the user; new stores go last. */
   getStores(): Promise<Store[]>;
   createStore(name: string): Promise<Store>;
+  /** `storeIds` must contain every existing store exactly once, in the new order. */
+  reorderStores(storeIds: string[]): Promise<void>;
   renameStore(storeId: string, name: string): Promise<void>;
   /** Also deletes the items left with no store. */
   deleteStore(storeId: string): Promise<void>;

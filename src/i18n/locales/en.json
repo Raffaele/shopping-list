@@ -39,7 +39,8 @@
     "listLabel": "Stores",
     "addStore": "Add store",
     "deleteTitle": "Delete store?",
-    "deleteDescription": "“{{name}}” and the items found only in this store will be deleted. This can't be undone."
+    "deleteDescription": "“{{name}}” and the items found only in this store will be deleted. This can't be undone.",
+    "reorderStore": "Reorder {{name}}: drag, or use the up and down arrow keys"
   },
   "items": {
     "count_one": "{{count}} item",

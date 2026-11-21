@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createMemoryRouter, RouterProvider } from 'react-router';
 import { routes } from '@/app/router';
@@ -97,5 +97,25 @@ describe('Home (stores)', () => {
     expect(screen.queryByRole('alertdialog')).not.toBeInTheDocument();
     expect(screen.getByText('Lidl')).toBeInTheDocument();
     expect(await shoppingFacade.getStores()).toHaveLength(1);
+  });
+
+  it('reorders stores with the keyboard and persists the order', async () => {
+    const user = userEvent.setup();
+    await shoppingFacade.createStore('Lidl');
+    await shoppingFacade.createStore('Aldi');
+    renderHome();
+
+    const handle = await screen.findByRole('button', { name: /^Reorder Lidl/ });
+    handle.focus();
+    await user.keyboard('{ArrowDown}');
+
+    await waitFor(async () => {
+      expect((await shoppingFacade.getStores()).map((store) => store.name)).toEqual([
+        'Aldi',
+        'Lidl',
+      ]);
+    });
+    const rows = within(screen.getByRole('list', { name: 'Stores' })).getAllByRole('listitem');
+    expect(rows.map((row) => within(row).getByRole('link').textContent)).toEqual(['Aldi', 'Lidl']);
   });
 });

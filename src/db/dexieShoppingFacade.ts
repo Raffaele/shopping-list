@@ -1,7 +1,12 @@
 import { db } from './db';
 import type { ShoppingFacade } from './shoppingFacade';
 import type { Item, ItemFields, NewItem, Store } from './types';
-import { assertHasStores, assertValidItemFields, assertValidName } from './validation';
+import {
+  assertHasStores,
+  assertSameIds,
+  assertValidItemFields,
+  assertValidName,
+} from './validation';
 
 const TABLES = [db.stores, db.items, db.storeItems];
 
@@ -27,22 +32,40 @@ async function deleteItemIfOrphan(itemId: string): Promise<void> {
   if (remainingLinks === 0) await db.items.delete(itemId);
 }
 
+async function nextStorePosition(): Promise<number> {
+  const last = await db.stores.orderBy('position').last();
+  return last === undefined ? 0 : last.position + 1;
+}
+
 function compareByPriorityThenName(a: Item, b: Item): number {
   return b.priority - a.priority || a.name.localeCompare(b.name);
 }
 
 export const dexieShoppingFacade: ShoppingFacade = {
   async getStores() {
-    const stores = await db.stores.toArray();
-    return stores.sort((a, b) => a.name.localeCompare(b.name));
+    return db.stores.orderBy('position').toArray();
   },
 
   async createStore(name) {
     assertValidName(name);
-    const store: Store = { id: crypto.randomUUID(), name: name.trim() };
-    await db.stores.add(store);
-    return store;
+    return db.transaction('rw', TABLES, async () => {
+      const store: Store = {
+        id: crypto.randomUUID(),
+        name: name.trim(),
+        position: await nextStorePosition(),
+      };
+      await db.stores.add(store);
+      return store;
+    });
   },
+
+  reorderStores: (storeIds) =>
+    db.transaction('rw', TABLES, async () => {
+      assertSameIds(storeIds, await db.stores.toCollection().primaryKeys());
+      await Promise.all(
+        storeIds.map((storeId, position) => db.stores.update(storeId, { position })),
+      );
+    }),
 
   async renameStore(storeId, name) {
     assertValidName(name);
