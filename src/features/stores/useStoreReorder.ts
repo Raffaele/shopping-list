@@ -5,21 +5,27 @@ import { findIndexUnderPointer, moveId } from './reorder';
 const KEY_STEP: Record<string, number> = { ArrowUp: -1, ArrowDown: 1 };
 
 export function useStoreReorder(stores: Store[]) {
-  const [draftIds, setDraftIds] = useState<string[] | null>(null);
+  const [draft, setDraft] = useState<{ base: Store[]; ids: string[] } | null>(null);
   const [draggedId, setDraggedId] = useState<string | null>(null);
   const latestIds = useRef<string[]>([]);
   const rows = useRef(new Map<string, HTMLElement>());
 
   const savedIds = stores.map((store) => store.id);
-  const orderedIds = draftIds ?? savedIds;
+  // A draft is only valid for the list it started from: when the saved list arrives (new
+  // `stores`), the draft is dropped without flashing the old order in between.
+  const orderedIds = draft?.base === stores ? draft.ids : savedIds;
   const byId = new Map(stores.map((store) => [store.id, store]));
   const orderedStores = orderedIds.flatMap((id) => byId.get(id) ?? []);
 
   const save = useCallback(
     async (ids: string[]) => {
       const changed = ids.some((id, index) => id !== stores[index]?.id);
-      if (changed) await shoppingFacade.reorderStores(ids);
-      setDraftIds(null);
+      try {
+        if (changed) await shoppingFacade.reorderStores(ids);
+      } catch {
+        // The list falls back to the saved order.
+        setDraft(null);
+      }
     },
     [stores],
   );
@@ -33,7 +39,7 @@ export function useStoreReorder(stores: Store[]) {
         event.clientY,
       );
       latestIds.current = moveId(latestIds.current, draggedId, target);
-      setDraftIds(latestIds.current);
+      setDraft({ base: stores, ids: latestIds.current });
     };
     const onEnd = () => {
       setDraggedId(null);
@@ -47,7 +53,7 @@ export function useStoreReorder(stores: Store[]) {
       window.removeEventListener('pointerup', onEnd);
       window.removeEventListener('pointercancel', onEnd);
     };
-  }, [draggedId, save]);
+  }, [draggedId, save, stores]);
 
   const startDrag = (id: string) => {
     latestIds.current = orderedIds;
@@ -58,7 +64,7 @@ export function useStoreReorder(stores: Store[]) {
     const step = KEY_STEP[key];
     if (step === undefined) return false;
     const next = moveId(orderedIds, id, orderedIds.indexOf(id) + step);
-    setDraftIds(next);
+    setDraft({ base: stores, ids: next });
     void save(next);
     return true;
   };

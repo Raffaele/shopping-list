@@ -115,7 +115,12 @@ describe('Home (stores)', () => {
         'Lidl',
       ]);
     });
-    const rows = within(screen.getByRole('list', { name: 'Stores' })).getAllByRole('listitem');
-    expect(rows.map((row) => within(row).getByRole('link').textContent)).toEqual(['Aldi', 'Lidl']);
+    await waitFor(() => {
+      const rows = within(screen.getByRole('list', { name: 'Stores' })).getAllByRole('listitem');
+      expect(rows.map((row) => within(row).getByRole('link').textContent)).toEqual([
+        'Aldi',
+        'Lidl',
+      ]);
+    });
   });
 });
