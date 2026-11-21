@@ -190,9 +190,11 @@ describe('item count plurals', () => {
     const lidl = await shoppingFacade.createStore('Lidl');
     const aldi = await shoppingFacade.createStore('Aldi');
     const eggs = await shoppingFacade.createItem(newItem([lidl.id], { name: 'Eggs' }));
-    await shoppingFacade.createItem(newItem([lidl.id], { name: 'Bread' }));
+    const bread = await shoppingFacade.createItem(newItem([lidl.id], { name: 'Bread' }));
+    await shoppingFacade.createItem(newItem([lidl.id], { name: 'Butter' }));
     await shoppingFacade.createItem(newItem([aldi.id], { name: 'Cheese' }));
     await shoppingFacade.markFound(eggs.id);
+    await shoppingFacade.markFound(bread.id);
     renderStore(lidl.id);
 
     const dialog = await openItemDialog(user, 'Add item', 'Add item');

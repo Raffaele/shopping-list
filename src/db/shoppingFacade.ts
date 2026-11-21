@@ -20,7 +20,7 @@ export interface ShoppingFacade {
   setItemStores(itemId: string, storeIds: string[]): Promise<void>;
   getItemStoreIds(itemId: string): Promise<string[]>;
 
-  /** Names previously entered in the store, sorted by name. */
+  /** Names previously entered in the store and not currently in its list, sorted by name. */
   getStoreSuggestions(storeId: string): Promise<string[]>;
   deleteStoreSuggestion(storeId: string, name: string): Promise<void>;
 

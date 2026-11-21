@@ -50,6 +50,12 @@ async function deleteItemIfOrphan(itemId: string): Promise<void> {
   if (remainingLinks === 0) await db.items.delete(itemId);
 }
 
+async function listStoreItems(storeId: string): Promise<Item[]> {
+  const itemIds = await getItemIdsOfStore(storeId);
+  const items = await db.items.bulkGet(itemIds);
+  return items.filter((item): item is Item => item !== undefined).sort(compareByPriorityThenName);
+}
+
 async function nextStorePosition(): Promise<number> {
   const last = await db.stores.orderBy('position').last();
   return last === undefined ? 0 : last.position + 1;
@@ -155,19 +161,22 @@ export const dexieShoppingFacade: ShoppingFacade = {
   getItemStoreIds: getStoreIdsOfItem,
 
   async getStoreSuggestions(storeId) {
-    const suggestions = await db.storeSuggestions.where('storeId').equals(storeId).toArray();
-    return suggestions.map(({ name }) => name).sort((a, b) => a.localeCompare(b));
+    const [suggestions, currentItems] = await Promise.all([
+      db.storeSuggestions.where('storeId').equals(storeId).toArray(),
+      listStoreItems(storeId),
+    ]);
+    const currentKeys = new Set(currentItems.map(({ name }) => toSuggestionKey(name)));
+    return suggestions
+      .filter(({ key }) => !currentKeys.has(key))
+      .map(({ name }) => name)
+      .sort((a, b) => a.localeCompare(b));
   },
 
   async deleteStoreSuggestion(storeId, name) {
     await db.storeSuggestions.delete([storeId, toSuggestionKey(name)]);
   },
 
-  async getStoreItems(storeId) {
-    const itemIds = await getItemIdsOfStore(storeId);
-    const items = await db.items.bulkGet(itemIds);
-    return items.filter((item): item is Item => item !== undefined).sort(compareByPriorityThenName);
-  },
+  getStoreItems: listStoreItems,
 
   markFound: (itemId) =>
     db.transaction('rw', TABLES, async () => {

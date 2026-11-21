@@ -184,8 +184,9 @@ describe('store suggestions', () => {
     const a = await facade.createStore('A');
     const b = await facade.createStore('B');
     const milk1 = await facade.createItem(milk([a.id], { name: 'Milk' }));
-    await facade.createItem(milk([a.id, b.id], { name: 'Bread' }));
+    const bread = await facade.createItem(milk([a.id, b.id], { name: 'Bread' }));
     await facade.markFound(milk1.id);
+    await facade.markFound(bread.id);
 
     expect(await facade.getStoreSuggestions(a.id)).toEqual(['Bread', 'Milk']);
     expect(await facade.getStoreSuggestions(b.id)).toEqual(['Bread']);
@@ -193,8 +194,10 @@ describe('store suggestions', () => {
 
   it('keeps one suggestion per name, ignoring case', async () => {
     const a = await facade.createStore('A');
-    await facade.createItem(milk([a.id], { name: 'milk' }));
-    await facade.createItem(milk([a.id], { name: 'Milk' }));
+    const lower = await facade.createItem(milk([a.id], { name: 'milk' }));
+    const capitalized = await facade.createItem(milk([a.id], { name: 'Milk' }));
+    await facade.markFound(lower.id);
+    await facade.markFound(capitalized.id);
     expect(await facade.getStoreSuggestions(a.id)).toEqual(['Milk']);
   });
 
@@ -204,15 +207,30 @@ describe('store suggestions', () => {
     const item = await facade.createItem(milk([a.id]));
     await facade.updateItem(item.id, { name: 'Oat milk' });
     await facade.setItemStores(item.id, [a.id, b.id]);
+    await facade.markFound(item.id);
 
     expect(await facade.getStoreSuggestions(a.id)).toEqual(['Milk', 'Oat milk']);
     expect(await facade.getStoreSuggestions(b.id)).toEqual(['Oat milk']);
   });
 
+  it('does not suggest names currently in the store list, until they are found', async () => {
+    const a = await facade.createStore('A');
+    const b = await facade.createStore('B');
+    const item = await facade.createItem(milk([a.id], { name: 'Milk' }));
+    expect(await facade.getStoreSuggestions(a.id)).toEqual([]);
+
+    await facade.addItemToStore(item.id, b.id);
+    await facade.removeItemFromStore(item.id, a.id);
+    expect(await facade.getStoreSuggestions(a.id)).toEqual(['Milk']);
+    expect(await facade.getStoreSuggestions(b.id)).toEqual([]);
+  });
+
   it('deletes a suggestion and the suggestions of a deleted store', async () => {
     const a = await facade.createStore('A');
-    await facade.createItem(milk([a.id], { name: 'Milk' }));
-    await facade.createItem(milk([a.id], { name: 'Bread' }));
+    const milkItem = await facade.createItem(milk([a.id], { name: 'Milk' }));
+    const bread = await facade.createItem(milk([a.id], { name: 'Bread' }));
+    await facade.markFound(milkItem.id);
+    await facade.markFound(bread.id);
     await facade.deleteStoreSuggestion(a.id, 'MILK');
     expect(await facade.getStoreSuggestions(a.id)).toEqual(['Bread']);
 
