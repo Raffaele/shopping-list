@@ -1,11 +1,16 @@
 import { useTranslation } from 'react-i18next';
 import { IconButton } from '@/components/IconButton/IconButton';
-import { MIN_QUANTITY, shoppingFacade, type Item } from '@/db';
+import { MIN_QUANTITY, type Item } from '@/db';
 import { EditItemDialog } from '../EditItemDialog/EditItemDialog';
 import { PriorityIcon } from '../PriorityIcon/PriorityIcon';
 import styles from './ItemListItem.module.css';
 
-export function ItemListItem({ item }: { item: Item }) {
+interface ItemListItemProps {
+  item: Item;
+  onFound: (item: Item) => void;
+}
+
+export function ItemListItem({ item, onFound }: ItemListItemProps) {
   const { t, i18n } = useTranslation();
   const formatNumber = (value: number) => new Intl.NumberFormat(i18n.language).format(value);
 
@@ -29,7 +34,7 @@ export function ItemListItem({ item }: { item: Item }) {
         variant="primary"
         aria-label={t('items.markFound', { name: item.name })}
         onClick={() => {
-          void shoppingFacade.markFound(item.id);
+          onFound(item);
         }}
       />
     </li>

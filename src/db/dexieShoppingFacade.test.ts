@@ -177,6 +177,38 @@ describe('markFound', () => {
     expect(await db.items.count()).toBe(0);
     expect(await db.storeItems.count()).toBe(0);
   });
+
+  it('returns what it deleted and nothing for an unknown item', async () => {
+    const a = await facade.createStore('A');
+    const item = await facade.createItem(milk([a.id]));
+    expect(await facade.markFound(item.id)).toEqual({ item, storeIds: [a.id] });
+    expect(await facade.markFound(item.id)).toBeUndefined();
+  });
+});
+
+describe('restoreItem', () => {
+  it('puts the item back in the stores that still exist', async () => {
+    const a = await facade.createStore('A');
+    const b = await facade.createStore('B');
+    const item = await facade.createItem(milk([a.id, b.id]));
+    const removed = await facade.markFound(item.id);
+    await facade.deleteStore(b.id);
+
+    await facade.restoreItem(removed ?? { item, storeIds: [] });
+
+    expect(await facade.getStoreItems(a.id)).toEqual([item]);
+    expect(await db.storeItems.count()).toBe(1);
+  });
+
+  it('rejects when none of the stores exist any more', async () => {
+    const a = await facade.createStore('A');
+    const item = await facade.createItem(milk([a.id]));
+    const removed = await facade.markFound(item.id);
+    await facade.deleteStore(a.id);
+
+    await expect(facade.restoreItem(removed ?? { item, storeIds: [] })).rejects.toThrow(RangeError);
+    expect(await db.items.count()).toBe(0);
+  });
 });
 
 describe('store suggestions', () => {

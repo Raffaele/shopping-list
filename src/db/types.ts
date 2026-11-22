@@ -26,6 +26,12 @@ export interface StoreSuggestion {
   name: string;
 }
 
+/** What `markFound` deleted, enough to put the item back. */
+export interface RemovedItem {
+  item: Item;
+  storeIds: string[];
+}
+
 export type ItemFields = Omit<Item, 'id'>;
 
 export interface NewItem extends ItemFields {

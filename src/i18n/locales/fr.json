@@ -69,7 +69,11 @@
     "suggestionsLabel": "Suggestions",
     "use": "Utiliser",
     "useSuggestion": "Utiliser {{name}}",
-    "deleteSuggestion": "Supprimer la suggestion {{name}}"
+    "deleteSuggestion": "Supprimer la suggestion {{name}}",
+    "notifications": "Notifications",
+    "foundToast": "{{name}} retiré",
+    "undo": "Annuler",
+    "undoAltText": "Annuler le retrait"
   },
   "share": {
     "title": "Partage",

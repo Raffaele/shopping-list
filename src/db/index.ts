@@ -5,6 +5,7 @@ export type {
   ItemFields,
   NewItem,
   Priority,
+  RemovedItem,
   Store,
   StoreItem,
   StoreSuggestion,

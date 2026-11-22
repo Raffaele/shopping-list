@@ -70,7 +70,11 @@
     "suggestionsLabel": "Подсказки",
     "use": "Выбрать",
     "useSuggestion": "Выбрать {{name}}",
-    "deleteSuggestion": "Удалить подсказку {{name}}"
+    "deleteSuggestion": "Удалить подсказку {{name}}",
+    "notifications": "Уведомления",
+    "foundToast": "«{{name}}» удалён",
+    "undo": "Отменить",
+    "undoAltText": "Отменить удаление"
   },
   "share": {
     "title": "Поделиться",

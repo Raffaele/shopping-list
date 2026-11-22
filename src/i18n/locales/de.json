@@ -68,7 +68,11 @@
     "suggestionsLabel": "Vorschläge",
     "use": "Übernehmen",
     "useSuggestion": "{{name}} übernehmen",
-    "deleteSuggestion": "Vorschlag {{name}} entfernen"
+    "deleteSuggestion": "Vorschlag {{name}} entfernen",
+    "notifications": "Benachrichtigungen",
+    "foundToast": "{{name}} entfernt",
+    "undo": "Rückgängig",
+    "undoAltText": "Entfernen rückgängig machen"
   },
   "share": {
     "title": "Teilen",

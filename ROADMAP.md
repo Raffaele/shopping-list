@@ -41,10 +41,10 @@ Work plan for the app. Tick a box (`[x]`) when the item is done. Domain rules ar
 
 ## 4. Polish
 
-- [ ] Confirmation dialogs for deletions (Radix `AlertDialog`)
-- [ ] Undo for "found" via toast (Radix `Toast`)
-- [ ] Empty states
-- [ ] Accessibility check (labels, `aria-label` on icon-only buttons, touch targets)
+- [x] Confirmation dialogs for deletions (Radix `AlertDialog`)
+- [x] Undo for "found" via toast (Radix `Toast`)
+- [x] Empty states
+- [x] Accessibility check (labels, `aria-label` on icon-only buttons, touch targets)
 
 ## 5. PWA verification and deploy
 

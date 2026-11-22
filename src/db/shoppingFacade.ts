@@ -1,4 +1,4 @@
-import type { Item, ItemFields, NewItem, Store } from './types';
+import type { Item, ItemFields, NewItem, RemovedItem, Store } from './types';
 
 export interface ShoppingFacade {
   /** In the order chosen by the user; new stores go last. */
@@ -26,6 +26,11 @@ export interface ShoppingFacade {
 
   /** Highest priority first, then by name. */
   getStoreItems(storeId: string): Promise<Item[]>;
-  /** Deletes the item and all its links, so it disappears from every store. */
-  markFound(itemId: string): Promise<void>;
+  /**
+   * Deletes the item and all its links, so it disappears from every store.
+   * Returns what was deleted, or `undefined` if the item did not exist.
+   */
+  markFound(itemId: string): Promise<RemovedItem | undefined>;
+  /** Puts back an item deleted by `markFound`, in the stores that still exist. */
+  restoreItem(removed: RemovedItem): Promise<void>;
 }

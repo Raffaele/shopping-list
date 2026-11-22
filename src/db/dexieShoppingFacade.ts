@@ -1,7 +1,7 @@
 import { db } from './db';
 import { toSuggestionKey } from './suggestions';
 import type { ShoppingFacade } from './shoppingFacade';
-import type { Item, ItemFields, NewItem, Store } from './types';
+import type { Item, ItemFields, NewItem, RemovedItem, Store } from './types';
 import {
   assertHasStores,
   assertSameIds,
@@ -180,7 +180,22 @@ export const dexieShoppingFacade: ShoppingFacade = {
 
   markFound: (itemId) =>
     db.transaction('rw', TABLES, async () => {
+      const item = await db.items.get(itemId);
+      if (item === undefined) return undefined;
+      const storeIds = await getStoreIdsOfItem(itemId);
       await db.storeItems.where('itemId').equals(itemId).delete();
       await db.items.delete(itemId);
+      return { item, storeIds };
+    }),
+
+  restoreItem: ({ item, storeIds }: RemovedItem) =>
+    db.transaction('rw', TABLES, async () => {
+      const stores = await db.stores.bulkGet(storeIds);
+      const existingStoreIds = storeIds.filter((_, index) => stores[index] !== undefined);
+      assertHasStores(existingStoreIds);
+      await db.items.put(item);
+      await db.storeItems.bulkPut(
+        existingStoreIds.map((storeId) => ({ storeId, itemId: item.id })),
+      );
     }),
 };

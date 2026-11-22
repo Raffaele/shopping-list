@@ -69,7 +69,11 @@
     "suggestionsLabel": "Sugerencias",
     "use": "Usar",
     "useSuggestion": "Usar {{name}}",
-    "deleteSuggestion": "Eliminar la sugerencia {{name}}"
+    "deleteSuggestion": "Eliminar la sugerencia {{name}}",
+    "notifications": "Notificaciones",
+    "foundToast": "{{name}} eliminado",
+    "undo": "Deshacer",
+    "undoAltText": "Deshacer la eliminación"
   },
   "share": {
     "title": "Compartir",

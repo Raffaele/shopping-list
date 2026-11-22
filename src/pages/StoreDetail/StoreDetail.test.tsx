@@ -175,6 +175,24 @@ describe('StoreDetail', () => {
     expect(await db.items.count()).toBe(0);
   });
 
+  it('offers to undo a found item', async () => {
+    const user = userEvent.setup();
+    const lidl = await shoppingFacade.createStore('Lidl');
+    const aldi = await shoppingFacade.createStore('Aldi');
+    await shoppingFacade.createItem(newItem([lidl.id, aldi.id], { name: 'Eggs' }));
+    renderStore(lidl.id);
+
+    await user.click(await screen.findByRole('button', { name: 'Mark Eggs as found' }));
+    expect(await screen.findByText('Eggs removed')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Undo' }));
+
+    expect(await screen.findByRole('button', { name: 'Mark Eggs as found' })).toBeInTheDocument();
+    expect(await shoppingFacade.getStoreItems(aldi.id)).toHaveLength(1);
+    await waitFor(() => {
+      expect(screen.queryByText('Eggs removed')).not.toBeInTheDocument();
+    });
+  });
+
   it('opens a store from the stores list', async () => {
     const user = userEvent.setup();
     await shoppingFacade.createStore('Lidl');
