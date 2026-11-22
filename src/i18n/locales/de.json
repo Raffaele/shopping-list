@@ -3,9 +3,7 @@
     "title": "Einkaufsliste"
   },
   "nav": {
-    "home": "Start",
-    "settings": "Einstellungen",
-    "label": "Hauptnavigation"
+    "settings": "Einstellungen"
   },
   "settings": {
     "title": "Einstellungen",

@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { createMemoryRouter, RouterProvider } from 'react-router';
 import { routes } from './router';
 
@@ -14,5 +15,16 @@ describe('router', () => {
     const router = createMemoryRouter(routes, { initialEntries: ['/'] });
     render(<RouterProvider router={router} />);
     expect(await screen.findByText('No stores yet')).toBeInTheDocument();
+  });
+
+  it('opens the settings from the header, which replaces the bottom navigation', async () => {
+    const user = userEvent.setup();
+    const router = createMemoryRouter(routes, { initialEntries: ['/'] });
+    render(<RouterProvider router={router} />);
+
+    expect(screen.queryByRole('navigation')).not.toBeInTheDocument();
+    await user.click(await screen.findByRole('link', { name: 'Settings' }));
+    expect(await screen.findByRole('heading', { name: 'Settings' })).toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: 'Settings' })).not.toBeInTheDocument();
   });
 });

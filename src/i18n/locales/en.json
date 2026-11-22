@@ -3,9 +3,7 @@
     "title": "Shopping list"
   },
   "nav": {
-    "home": "Home",
-    "settings": "Settings",
-    "label": "Main navigation"
+    "settings": "Settings"
   },
   "settings": {
     "title": "Settings",

@@ -3,9 +3,7 @@
     "title": "Lista della spesa"
   },
   "nav": {
-    "home": "Home",
-    "settings": "Impostazioni",
-    "label": "Navigazione principale"
+    "settings": "Impostazioni"
   },
   "settings": {
     "title": "Impostazioni",

@@ -3,9 +3,7 @@
     "title": "Lista de la compra"
   },
   "nav": {
-    "home": "Inicio",
-    "settings": "Ajustes",
-    "label": "Navegación principal"
+    "settings": "Ajustes"
   },
   "settings": {
     "title": "Ajustes",

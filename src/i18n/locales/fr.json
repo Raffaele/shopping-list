@@ -3,9 +3,7 @@
     "title": "Liste de courses"
   },
   "nav": {
-    "home": "Accueil",
-    "settings": "Réglages",
-    "label": "Navigation principale"
+    "settings": "Réglages"
   },
   "settings": {
     "title": "Réglages",
