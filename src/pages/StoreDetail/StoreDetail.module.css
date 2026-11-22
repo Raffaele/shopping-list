@@ -4,14 +4,6 @@
   gap: var(--space-4);
 }
 
-.back {
-  display: inline-flex;
-  align-items: center;
-  align-self: flex-start;
-  min-height: var(--touch-target);
-  color: var(--color-primary);
-}
-
 .header {
   display: flex;
   align-items: center;
@@ -20,6 +12,7 @@
 }
 
 .titles {
+  flex: 1;
   min-width: 0;
 }
 

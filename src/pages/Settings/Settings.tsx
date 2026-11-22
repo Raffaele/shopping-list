@@ -1,5 +1,6 @@
 import { RadioGroup, Select } from 'radix-ui';
 import { useTranslation } from 'react-i18next';
+import { IconLink } from '@/components/IconLink/IconLink';
 import { SUPPORTED_LANGUAGES } from '@/i18n/languages';
 import { useSettings, type ThemeSetting } from '@/stores/settings';
 import styles from './Settings.module.css';
@@ -18,19 +19,19 @@ export function Settings() {
 
   return (
     <div className={styles.page}>
-      <h2 className={styles.heading}>{t('settings.title')}</h2>
+      <div className={styles.header}>
+        <IconLink to="/" icon="back" aria-label={t('settings.back')} />
+        <h2 className={styles.heading}>{t('settings.title')}</h2>
+      </div>
 
-      <section className={styles.section}>
-        <h3 id="theme-label" className={styles.sectionTitle}>
-          {t('settings.theme.title')}
-        </h3>
+      <fieldset className={styles.fieldset}>
+        <legend className={styles.legend}>{t('settings.theme.title')}</legend>
         <RadioGroup.Root
           className={styles.radioGroup}
           value={theme}
           onValueChange={(v) => {
             if (isTheme(v)) setTheme(v);
           }}
-          aria-labelledby="theme-label"
         >
           {THEMES.map((th) => (
             <div key={th} className={styles.radioRow}>
@@ -43,7 +44,7 @@ export function Settings() {
             </div>
           ))}
         </RadioGroup.Root>
-      </section>
+      </fieldset>
 
       <section className={styles.section}>
         <h3 id="language-label" className={styles.sectionTitle}>

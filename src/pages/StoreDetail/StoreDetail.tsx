@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { Link, useParams } from 'react-router';
+import { useParams } from 'react-router';
+import { IconLink } from '@/components/IconLink/IconLink';
 import { AddItemDialog } from '@/features/items/AddItemDialog/AddItemDialog';
 import { ItemList } from '@/features/items/ItemList/ItemList';
 import { useStoreItems } from '@/features/items/useStoreItems';
@@ -19,10 +20,8 @@ export function StoreDetail() {
 
   return (
     <div className={styles.page}>
-      <Link to="/" className={styles.back}>
-        {t('items.backToStores')}
-      </Link>
       <div className={styles.header}>
+        <IconLink to="/" icon="back" aria-label={t('items.backToStores')} />
         <div className={styles.titles}>
           <h2 className={styles.heading}>{store.name}</h2>
           {items && <p className={styles.count}>{t('items.count', { count: items.length })}</p>}

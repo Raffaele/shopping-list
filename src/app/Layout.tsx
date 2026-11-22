@@ -3,6 +3,8 @@ import { NavLink, Outlet } from 'react-router';
 import { useApplyTheme } from './useApplyTheme';
 import styles from './Layout.module.css';
 
+const APP_ICON_URL = `${import.meta.env.BASE_URL}icon.svg`;
+
 export function Layout() {
   const { t } = useTranslation();
   useApplyTheme();
@@ -13,6 +15,7 @@ export function Layout() {
   return (
     <div className={styles.shell}>
       <header className={styles.header}>
+        <img className={styles.icon} src={APP_ICON_URL} alt="" />
         <h1 className={styles.title}>{t('app.title')}</h1>
       </header>
       <main className={styles.main}>

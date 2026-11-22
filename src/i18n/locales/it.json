@@ -18,7 +18,8 @@
     "language": {
       "title": "Lingua"
     },
-    "version": "Versione"
+    "version": "Versione",
+    "back": "Indietro"
   },
   "notFound": {
     "title": "Pagina non trovata",

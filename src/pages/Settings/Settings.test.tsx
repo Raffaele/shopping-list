@@ -20,6 +20,20 @@ describe('Settings page', () => {
     expect(screen.getByText(/Version/)).toBeInTheDocument();
   });
 
+  it('groups the theme options in a fieldset named by its legend', () => {
+    renderAt('/settings');
+    expect(screen.getByRole('group', { name: 'Theme' })).toContainElement(
+      screen.getByRole('radio', { name: 'Dark' }),
+    );
+  });
+
+  it('goes back to the home page', async () => {
+    const user = userEvent.setup();
+    renderAt('/settings');
+    await user.click(screen.getByRole('link', { name: 'Back' }));
+    expect(await screen.findByText('No stores yet')).toBeInTheDocument();
+  });
+
   it('switches theme', async () => {
     const user = userEvent.setup();
     renderAt('/settings');

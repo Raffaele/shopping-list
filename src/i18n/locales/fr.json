@@ -18,7 +18,8 @@
     "language": {
       "title": "Langue"
     },
-    "version": "Version"
+    "version": "Version",
+    "back": "Retour"
   },
   "notFound": {
     "title": "Page introuvable",
