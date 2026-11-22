@@ -48,7 +48,7 @@ Work plan for the app. Tick a box (`[x]`) when the item is done. Domain rules ar
 
 ## 5. PWA verification and deploy
 
-- [ ] GitHub: Settings → Pages → Source: GitHub Actions
-- [ ] First deploy to GitHub Pages
-- [ ] Real phone test: install, airplane mode, reopen (works offline)
-- [ ] Check theme and language switching on the phone
+- [x] GitHub: Settings → Pages → Source: GitHub Actions
+- [x] First deploy to GitHub Pages
+- [x] Real phone test: install, airplane mode, reopen (works offline)
+- [x] Check theme and language switching on the phone
