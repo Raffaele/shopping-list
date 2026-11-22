@@ -1,0 +1,15 @@
+.qr {
+  align-self: center;
+  width: 100%;
+  max-width: var(--qr-size);
+  height: auto;
+  border-radius: var(--radius-md);
+}
+
+.background {
+  fill: var(--color-qr-light);
+}
+
+.modules {
+  fill: var(--color-qr-dark);
+}

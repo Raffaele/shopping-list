@@ -1,6 +1,8 @@
 import { RadioGroup, Select } from 'radix-ui';
 import { useTranslation } from 'react-i18next';
+import { Fieldset } from '@/components/Fieldset/Fieldset';
 import { IconLink } from '@/components/IconLink/IconLink';
+import { ShareSection } from '@/features/share/ShareSection/ShareSection';
 import { SUPPORTED_LANGUAGES } from '@/i18n/languages';
 import { useSettings, type ThemeSetting } from '@/stores/settings';
 import styles from './Settings.module.css';
@@ -24,8 +26,7 @@ export function Settings() {
         <h2 className={styles.heading}>{t('settings.title')}</h2>
       </div>
 
-      <fieldset className={styles.fieldset}>
-        <legend className={styles.legend}>{t('settings.theme.title')}</legend>
+      <Fieldset legend={t('settings.theme.title')}>
         <RadioGroup.Root
           className={styles.radioGroup}
           value={theme}
@@ -44,7 +45,7 @@ export function Settings() {
             </div>
           ))}
         </RadioGroup.Root>
-      </fieldset>
+      </Fieldset>
 
       <section className={styles.section}>
         <h3 id="language-label" className={styles.sectionTitle}>
@@ -72,6 +73,8 @@ export function Settings() {
           </Select.Portal>
         </Select.Root>
       </section>
+
+      <ShareSection />
 
       <p className={styles.version}>
         {t('settings.version')}: {__APP_VERSION__}

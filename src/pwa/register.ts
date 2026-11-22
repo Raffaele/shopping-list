@@ -1,8 +1,10 @@
 import { registerSW } from 'virtual:pwa-register';
+import { listenForInstallPrompt } from './install';
 
 const HOUR_MS = 60 * 60 * 1000;
 
 export function registerPwa() {
+  listenForInstallPrompt();
   registerSW({
     immediate: true,
     onRegisteredSW(_url, registration) {

@@ -69,5 +69,27 @@
     "use": "Übernehmen",
     "useSuggestion": "{{name}} übernehmen",
     "deleteSuggestion": "Vorschlag {{name}} entfernen"
+  },
+  "share": {
+    "title": "Teilen",
+    "urlLabel": "Adresse der App",
+    "copy": "Kopieren",
+    "copiedStatus": "Adresse in die Zwischenablage kopiert",
+    "qrLabel": "QR-Code der App-Adresse",
+    "installButton": "App installieren",
+    "install": {
+      "android": {
+        "title": "Android (Chrome)",
+        "step1": "Öffne die Adresse der App in Chrome.",
+        "step2": "Tippe oben rechts auf das Menü (⋮).",
+        "step3": "Tippe auf „App installieren“ oder „Zum Startbildschirm hinzufügen“."
+      },
+      "ios": {
+        "title": "iPhone und iPad (Safari)",
+        "step1": "Öffne die Adresse der App in Safari.",
+        "step2": "Tippe auf die Teilen-Schaltfläche (Quadrat mit Pfeil).",
+        "step3": "Tippe auf „Zum Home-Bildschirm“ und dann auf „Hinzufügen“."
+      }
+    }
   }
 }

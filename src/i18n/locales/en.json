@@ -69,5 +69,27 @@
     "use": "Use",
     "useSuggestion": "Use {{name}}",
     "deleteSuggestion": "Remove suggestion {{name}}"
+  },
+  "share": {
+    "title": "Sharing",
+    "urlLabel": "App address",
+    "copy": "Copy",
+    "copiedStatus": "Address copied to the clipboard",
+    "qrLabel": "QR code of the app address",
+    "installButton": "Install the app",
+    "install": {
+      "android": {
+        "title": "Android (Chrome)",
+        "step1": "Open the app address in Chrome.",
+        "step2": "Tap the menu (⋮) at the top right.",
+        "step3": "Tap \"Install app\" or \"Add to Home screen\"."
+      },
+      "ios": {
+        "title": "iPhone and iPad (Safari)",
+        "step1": "Open the app address in Safari.",
+        "step2": "Tap the Share button (square with an arrow).",
+        "step3": "Tap \"Add to Home Screen\", then \"Add\"."
+      }
+    }
   }
 }

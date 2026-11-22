@@ -15,6 +15,7 @@ const ICON_PATHS = {
   priorityHigh: 'M7 11l5-5 5 5M7 18l5-5 5 5',
   priorityMedium: 'M5 9h14M5 15h14',
   priorityLow: 'M7 6l5 5 5-5M7 13l5 5 5-5',
+  copy: 'M9 9h11v11H9zM5 15H4V4h11v1',
   trash: 'M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3',
 } as const;
 

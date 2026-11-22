@@ -70,5 +70,27 @@
     "use": "Utiliser",
     "useSuggestion": "Utiliser {{name}}",
     "deleteSuggestion": "Supprimer la suggestion {{name}}"
+  },
+  "share": {
+    "title": "Partage",
+    "urlLabel": "Adresse de l'application",
+    "copy": "Copier",
+    "copiedStatus": "Adresse copiée dans le presse-papiers",
+    "qrLabel": "Code QR de l'adresse de l'application",
+    "installButton": "Installer l'application",
+    "install": {
+      "android": {
+        "title": "Android (Chrome)",
+        "step1": "Ouvrez l'adresse de l'application dans Chrome.",
+        "step2": "Touchez le menu (⋮) en haut à droite.",
+        "step3": "Touchez « Installer l'application » ou « Ajouter à l'écran d'accueil »."
+      },
+      "ios": {
+        "title": "iPhone et iPad (Safari)",
+        "step1": "Ouvrez l'adresse de l'application dans Safari.",
+        "step2": "Touchez le bouton Partager (carré avec une flèche).",
+        "step3": "Touchez « Sur l'écran d'accueil », puis « Ajouter »."
+      }
+    }
   }
 }

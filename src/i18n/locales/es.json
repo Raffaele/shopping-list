@@ -70,5 +70,27 @@
     "use": "Usar",
     "useSuggestion": "Usar {{name}}",
     "deleteSuggestion": "Eliminar la sugerencia {{name}}"
+  },
+  "share": {
+    "title": "Compartir",
+    "urlLabel": "Dirección de la aplicación",
+    "copy": "Copiar",
+    "copiedStatus": "Dirección copiada al portapapeles",
+    "qrLabel": "Código QR de la dirección de la aplicación",
+    "installButton": "Instalar la aplicación",
+    "install": {
+      "android": {
+        "title": "Android (Chrome)",
+        "step1": "Abre la dirección de la aplicación en Chrome.",
+        "step2": "Toca el menú (⋮) arriba a la derecha.",
+        "step3": "Toca «Instalar aplicación» o «Añadir a la pantalla de inicio»."
+      },
+      "ios": {
+        "title": "iPhone y iPad (Safari)",
+        "step1": "Abre la dirección de la aplicación en Safari.",
+        "step2": "Toca el botón Compartir (cuadrado con una flecha).",
+        "step3": "Toca «Añadir a pantalla de inicio» y luego «Añadir»."
+      }
+    }
   }
 }

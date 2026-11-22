@@ -1,0 +1,23 @@
+.platforms {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.platform {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--font-size-base);
+}
+
+.steps {
+  margin: 0;
+  padding-inline-start: var(--space-5);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
