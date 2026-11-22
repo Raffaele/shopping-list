@@ -60,7 +60,6 @@
       "medium": "Mittel",
       "low": "Niedrig"
     },
-    "quantity": "Menge: {{quantity, number}}",
     "emptyTitle": "Noch keine Artikel",
     "emptyText": "Füge hinzu, was du in diesem Geschäft kaufen musst.",
     "add": "Hinzufügen",

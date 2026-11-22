@@ -14,6 +14,7 @@ interface ItemFormProps {
   initialValues: NewItem;
   /** When set, names remembered for this store are offered while typing. */
   suggestionsStoreId?: string;
+  autoFocusName?: boolean;
   submitLabel: string;
   onSubmit: (values: NewItem) => Promise<void>;
   onCancel: () => void;
@@ -27,6 +28,7 @@ export function ItemForm({
   title,
   initialValues,
   suggestionsStoreId,
+  autoFocusName = false,
   submitLabel,
   onSubmit,
   onCancel,
@@ -64,6 +66,7 @@ export function ItemForm({
           <span className={styles.labelText}>{t('items.nameLabel')}</span>
           <input
             className={styles.input}
+            autoFocus={autoFocusName}
             value={name}
             onChange={(event) => {
               setName(event.target.value);
@@ -87,10 +90,7 @@ export function ItemForm({
             }}
           />
         </label>
-        <div className={styles.label}>
-          <span className={styles.labelText}>{t('items.priorityLabel')}</span>
-          <PriorityField value={priority} onChange={setPriority} />
-        </div>
+        <PriorityField value={priority} onChange={setPriority} />
         <StoresField stores={stores ?? []} selectedIds={storeIds} onChange={setStoreIds} />
       </div>
     </form>

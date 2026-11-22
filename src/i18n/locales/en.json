@@ -60,7 +60,6 @@
       "medium": "Medium",
       "low": "Low"
     },
-    "quantity": "Qty: {{quantity, number}}",
     "emptyTitle": "No items yet",
     "emptyText": "Add what you need to buy from this store.",
     "add": "Add",

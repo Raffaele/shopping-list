@@ -1,37 +1,47 @@
+.fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.legend {
+  padding: 0 var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
 .group {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
   gap: var(--space-2);
 }
 
 .option {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  min-height: var(--touch-target);
-  padding: 0 var(--space-3);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  cursor: pointer;
-}
-
-.radio {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--space-5);
-  height: var(--space-5);
+  min-width: var(--touch-target);
+  min-height: var(--touch-target);
   padding: 0;
-  background: var(--color-bg);
+  color: var(--tone);
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-md);
+  opacity: 0.6;
   cursor: pointer;
 }
 
-.indicator {
-  width: var(--space-3);
-  height: var(--space-3);
-  background: var(--color-primary);
-  border-radius: var(--radius-full);
+.option[data-state='checked'] {
+  color: var(--color-primary-contrast);
+  background: var(--tone);
+  border-color: var(--tone);
+  opacity: 1;
+}
+
+.option svg {
+  width: var(--space-6);
+  height: var(--space-6);
 }

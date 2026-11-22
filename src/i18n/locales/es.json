@@ -61,7 +61,6 @@
       "medium": "Media",
       "low": "Baja"
     },
-    "quantity": "Cant.: {{quantity, number}}",
     "emptyTitle": "Aún no hay artículos",
     "emptyText": "Añade lo que necesitas comprar en esta tienda.",
     "add": "Añadir",

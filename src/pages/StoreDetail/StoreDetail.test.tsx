@@ -26,7 +26,7 @@ function itemNames(): string[] {
   const list = screen.getByRole('list', { name: 'Items' });
   return within(list)
     .getAllByRole('listitem')
-    .map((row) => row.querySelector('span')?.textContent ?? '');
+    .map((row) => row.querySelector('div > span')?.textContent ?? '');
 }
 
 describe('StoreDetail', () => {
@@ -55,6 +55,7 @@ describe('StoreDetail', () => {
 
     expect(await screen.findByText('3 items')).toBeInTheDocument();
     expect(itemNames()).toEqual(['Eggs', 'Milk', 'Bread']);
+    expect(screen.queryByText('1')).not.toBeInTheDocument();
   });
 
   it('adds an item to this store and to another one', async () => {
@@ -71,11 +72,28 @@ describe('StoreDetail', () => {
     await user.click(within(dialog).getByRole('checkbox', { name: 'Aldi' }));
     await user.click(within(dialog).getByRole('button', { name: 'Add' }));
 
-    expect(await screen.findByText('Oat milk')).toBeInTheDocument();
-    expect(screen.getByText(/Qty: 3/)).toBeInTheDocument();
+    expect(await screen.findByText(/Oat milk/)).toBeInTheDocument();
+    expect(screen.getByText('3')).toBeInTheDocument();
+    expect(dialog).toBeInTheDocument();
+    expect(within(dialog).getByLabelText('Item name')).toHaveValue('');
+    expect(within(dialog).getByLabelText('Item name')).toHaveFocus();
+    expect(within(dialog).getByLabelText('Quantity')).toHaveValue(1);
+    expect(within(dialog).getByRole('radio', { name: 'High' })).toBeChecked();
+    expect(within(dialog).getByRole('checkbox', { name: 'Lidl' })).toBeChecked();
+    expect(within(dialog).getByRole('checkbox', { name: 'Aldi' })).not.toBeChecked();
     const [stored] = await shoppingFacade.getStoreItems(lidl.id);
     expect(stored).toMatchObject({ name: 'Oat milk', quantity: 3, priority: 3 });
     expect(await shoppingFacade.getStoreItems(aldi.id)).toHaveLength(1);
+  });
+
+  it('focuses the name field when the add dialog opens and groups the priority', async () => {
+    const user = userEvent.setup();
+    const store = await shoppingFacade.createStore('Lidl');
+    renderStore(store.id);
+
+    const dialog = await openItemDialog(user, 'Add item', 'Add item');
+    expect(within(dialog).getByLabelText('Item name')).toHaveFocus();
+    expect(within(dialog).getByRole('group', { name: 'Priority' })).toBeInTheDocument();
   });
 
   it('keeps Add disabled for a blank name, an invalid quantity or no store', async () => {

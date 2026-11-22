@@ -61,7 +61,6 @@
       "medium": "Moyenne",
       "low": "Basse"
     },
-    "quantity": "Qté : {{quantity, number}}",
     "emptyTitle": "Aucun article",
     "emptyText": "Ajoutez ce que vous devez acheter dans ce magasin.",
     "add": "Ajouter",
